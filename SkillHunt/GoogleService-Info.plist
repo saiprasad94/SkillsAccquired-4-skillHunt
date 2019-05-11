@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>653862634997-tilp1jep8fe8500pr0r43oi7ot4i9b49.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.653862634997-tilp1jep8fe8500pr0r43oi7ot4i9b49</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAGUbA6pS-u0_5drfGdW3b2ZFxU5vgbuvY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>653862634997</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.bradley.sashila.SkillHunt</string>
+	<key>PROJECT_ID</key>
+	<string>skillhunt-bb788</string>
+	<key>STORAGE_BUCKET</key>
+	<string>skillhunt-bb788.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:653862634997:ios:f234803103837212</string>
+	<key>DATABASE_URL</key>
+	<string>https://skillhunt-bb788.firebaseio.com</string>
+</dict>
+</plist>

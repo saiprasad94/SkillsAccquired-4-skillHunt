@@ -17,8 +17,54 @@ class Skill : UITableViewCell{
 }
 
     class HomeViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        @IBOutlet weak var name: UILabel!
+        
+        var nameFromLoginVC : String = ""
+        
+        let imageView = UIImageView()
+        
+        @IBOutlet weak var tableView: UITableView!
+        
+        
+        override func viewDidLoad() {
+            
+            super.viewDidLoad()
+            
+            name.text = nameFromLoginVC
+
+            
+            tableView.estimatedRowHeight = 50
+            tableView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+            tableView.backgroundColor = UIColor.darkGray
+            
+//            imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 300)
+//            imageView.image = UIImage.init(named: "poster")
+//            imageView.contentMode = .scaleAspectFill
+//            imageView.clipsToBounds = true
+//            view.addSubview(imageView)
+            // Do any additional setup after loading the view.
+        }
+        
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 300)
+            imageView.image = UIImage.init(named: "poster")
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            
+            return imageView
+        }
+        
+        func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let y = 300 - (scrollView.contentOffset.y + 300)
+            let height = min(max(y, 60), 400)
+            imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: height)
+        }
+        
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 30
+            
         
     }
     
@@ -29,15 +75,17 @@ class Skill : UITableViewCell{
         return cell
        
     }
-    
-    
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+            
+            performSegue(withIdentifier: "goToSkillSheet", sender: self)
+            
+        }
+        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
+    
     
 
     /*

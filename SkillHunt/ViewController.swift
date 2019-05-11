@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     
@@ -14,6 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var actionButton: UIButton!
     
     var action : Bool = true
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func toggleSwitch(_ sender: UISwitch) {
         
@@ -31,18 +35,50 @@ class ViewController: UIViewController {
     }
     
     
+    
     @IBAction func actionButton(_ sender: Any) {
         if action == true{
             print("in login mode")
-            performSegue(withIdentifier: "toHomeVC", sender: self)
+            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                if error == nil{
+                    
+                    self.performSegue(withIdentifier: "toHomeVC", sender: self)
+                    
+                }
+                else{
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
         }
         else if action == false{
             print("in signup mode")
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!){ (user, error) in
+                if error == nil {
+                    self.performSegue(withIdentifier: "toHomeVC", sender: self)
+                    
+                }
+                else{
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
         }
         
     }
+    }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toHomeVC" {
+            let dest = segue.destination as? HomeViewController
+            dest?.nameFromLoginVC = emailTextField.text ?? "empty"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
