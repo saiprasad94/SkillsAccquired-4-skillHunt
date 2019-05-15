@@ -34,7 +34,7 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
             "SkillThree": editSkillThree.text!
             ])
         
-        let storageRef = Storage.storage().reference().child("Image.png")
+        let storageRef = Storage.storage().reference().child("Image.png").child(useremail)
         let imgData = editImageView.image?.pngData()
         let metaData = StorageMetadata()
         metaData.contentType = "image/png"

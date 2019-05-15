@@ -55,25 +55,26 @@ var ref : DocumentReference!
             if let userPhotoURL : URL = (Auth.auth().currentUser?.photoURL){
                 
             }
-//            let userPhotoURL : URL = URL(fileURLWithPath: "https://firebasestorage.googleapis.com/v0/b/skillhunt-bb788.appspot.com/o/Image.png?alt=media&token=30e660ed-1804-42a0-870c-0728d21ac340")
+//            let userPhotoURL : URL = URL(fileURLWithPath: "https://firebasestorage.googleapis.com/v0/b/skillhunt-bb788.appspot.com/o/Image.png?alt=media&token=c1c6a9a1-e515-4618-8063-7b3765f2a36d")
             //print("userphotoURl",userPhotoURL)
             
             name.text = nameFromLoginVC
-
+            tableView.estimatedRowHeight = 117
+            tableView.rowHeight = UITableView.automaticDimension
             
 //            tableView.estimatedRowHeight = 50
-            tableView.contentInset = UIEdgeInsets(top: 215, left: 0, bottom: 0, right: 0)
-            tableView.backgroundColor = UIColor.darkGray
+//            tableView.contentInset = UIEdgeInsets(top: 215, left: 0, bottom: 0, right: 0)
+            //tableView.backgroundColor = UIColor.darkGray
             
-            imageView.frame = CGRect(x: 0, y: 150, width: UIScreen.main.bounds.size.width, height: 220)
+//            imageView.frame = CGRect(x: 0, y: 150, width: UIScreen.main.bounds.size.width, height: 220)
         
 
-            imageView.sd_setImage(with: userPhotoURL, completed: nil)
+//            imageView.sd_setImage(with: userPhotoURL, completed: nil)
 //            imageView.sd_setImage(with: "<#T##URL?#>", completed: nil)
 //           // imageView.sd_setImage(with: URL(userPhotoURL), placeholderImage: UIImage(named: "ClickHere"))
 //            imageView.contentMode = .scaleAspectFill
 //            imageView.clipsToBounds = true
-            view.addSubview(imageView)
+//            view.addSubview(imageView)
 //             Do any additional setup after loading the view.
         }
         
@@ -142,9 +143,15 @@ var ref : DocumentReference!
         cell.skilledPersonName.text = userList[indexPath.row].StudentName
         cell.primarySkillOne.text = userList[indexPath.row].primarySkill
 //        cell.imageView?.sd_setImage(with: userList[indexPath.row].imageUrl , completed: nil)
-        cell.displayImageView.image = UIImage(contentsOfFile: userList[indexPath.row].imageUrl)
+        cell.displayImageView.frame = CGRect(x: cell.displayImageView.frame.origin.x, y: cell.displayImageView.frame.origin.y, width: 40,height: 40);
+        
+        if let imgURL : URL = URL(string: (userList[indexPath.row].imageUrl )){
+            cell.displayImageView.sd_setImage(with: imgURL, completed: nil)
+            print("imageSize",imgURL)
+        }
+        
         //cell.imageView?.image = UIImage(named: "ClickHere")
-        print("imageSize",cell.displayImageView.image?.size)
+        
        // tableView.reloadData()
         
 //        let userInfo = Auth.auth().currentUser?.providerData[indexPath.row]
@@ -177,6 +184,18 @@ var ref : DocumentReference!
                     }
 
         }
+        
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            if indexPath.section == 0 {
+                return UITableView.automaticDimension
+            } else {
+                return 40
+            }
+        }
+       
+        
+        
+       
         
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
