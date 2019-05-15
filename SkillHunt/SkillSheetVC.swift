@@ -7,27 +7,42 @@
 //
 
 import UIKit
+import Firebase
 
-class SkillSet : UITableViewCell{
+public class SkillSet : UITableViewCell{
     
     @IBOutlet weak var SkillLabel: UILabel!
+    var skillOne : String = ""
+    var skillTwo : String = ""
+    var skillThree : String = ""
     
     
 }
 
 class SkillSheetVC: UIViewController {
     
+    
+//    var skillList : [SkillSet] = []
+    var skillList : [String] = []
+    
+    @IBOutlet weak var Name: UILabel!
+    var name : String = ""
+    var FromHomeVC :String = ""
     let imageView = UIImageView()
+    var db = Firestore.firestore()
 
     @IBOutlet weak var SkillTableView: UITableView!
     
     override func viewDidLoad() {
+        
+            self.Name.text = name
         
 //        SkillTableView.estimatedRowHeight = 50
 //        SkillTableView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
 //        SkillTableView.backgroundColor = UIColor.darkGray
         
         super.viewDidLoad()
+        getSkills()
 
         // Do any additional setup after loading the view.
     }
@@ -56,15 +71,44 @@ class SkillSheetVC: UIViewController {
 
 extension SkillSheetVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return skillList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "Skillcell") as? SkillSet)!
-//        cell.SkillLabel.text = "skill1"
+       cell.SkillLabel.text = skillList[indexPath.row]
         return cell
     }
     
-    
+    func getSkills(){
+        
+        db.collection("Users").document(FromHomeVC).getDocument { (SkillSnapShot, error) in
+            if error == nil{
+                print("SkillSnapShot",SkillSnapShot?.data())
+//                let Sk = SkillSet()
+                let skone = SkillSnapShot?.get("SkillOne") as? String ?? ""
+                self.skillList.append(skone)
+                let sktwo = SkillSnapShot?.get("SkillTwo") as? String ?? ""
+                self.skillList.append(sktwo)
+                let skthree = SkillSnapShot?.get("SkillThree") as? String ?? ""
+                self.skillList.append(skthree)
+//                Sk.skillOne = SkillSnapShot?.get("SkillOne") as? String ?? ""
+//                Sk.skillTwo =  SkillSnapShot?.get("SkillTwo") as? String ?? ""
+//                Sk.skillThree =  SkillSnapShot?.get("SkillThree") as? String ?? ""
+                
+//                print("SkillSet",Sk.skillOne)
+                
+                
+                self.SkillTableView.reloadData()
+                
+            }else{
+                print("error retr",error)
+            }
+            
+            
+            
+        }
+        
+    }
     
 }

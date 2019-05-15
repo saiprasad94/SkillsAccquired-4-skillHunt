@@ -367,8 +367,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeN-pN-Jpd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -438,6 +438,7 @@
                         <viewLayoutGuide key="safeArea" id="DSP-qb-PDA"/>
                     </view>
                     <connections>
+                        <outlet property="Name" destination="BzS-cP-dwE" id="kbU-dO-cBk"/>
                         <outlet property="SkillTableView" destination="777-vN-AIr" id="9yt-h5-P3c"/>
                     </connections>
                 </viewController>
@@ -465,6 +466,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4GK-Oh-pUu"/>
+        <segue reference="pTT-xc-Cel"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -54,6 +54,8 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
                     }
                         print("url is: ",URLvar)
                     self.db.collection("Users").document(self.useremail).setData(["imageUrl":URLvar ], merge: true)
+                    self.db.collection("Users").document(self.useremail).setData(["email": self.useremail] , merge: true)
+                    
                     changeRequest?.displayName = self.editDisplayName.text
                     changeRequest?.commitChanges(completion: { (error) in
                         if error == nil{

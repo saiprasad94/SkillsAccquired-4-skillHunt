@@ -20,6 +20,7 @@ class Skill : UITableViewCell{
     var primarySkill : String = ""
 //    var imageUrl = URL(fileURLWithPath: "")
     var imageUrl = ""
+    var id = ""
     
 }
 var db = Firestore.firestore()
@@ -31,6 +32,8 @@ var ref : DocumentReference!
         
         var nameFromLoginVC : String = ""
         var userList : [Skill] = []
+        var toSkillSheetVC : String = ""
+        var NametoSkillSheetVC : String = ""
         
         let imageView = UIImageView()
         
@@ -105,6 +108,8 @@ var ref : DocumentReference!
                     for user in UserSnapshot!.documents{
                         print("user", user.data())
                         let sk = Skill()
+                        
+                        self.toSkillSheetVC = user.get("email") as? String ?? ""
                         sk.StudentName = user.get("username") as? String ?? ""
                         sk.primarySkill = user.get("SkillOne") as? String ?? ""
                         sk.imageUrl = user.get("imageUrl") as? String ?? ""
@@ -131,6 +136,9 @@ var ref : DocumentReference!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "cell") as? Skill)!
         print("userlist",userList[indexPath.row].StudentName)
+        
+        
+        
         cell.skilledPersonName.text = userList[indexPath.row].StudentName
         cell.primarySkillOne.text = userList[indexPath.row].primarySkill
 //        cell.imageView?.sd_setImage(with: userList[indexPath.row].imageUrl , completed: nil)
@@ -151,14 +159,21 @@ var ref : DocumentReference!
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
-            
+            NametoSkillSheetVC = userList[indexPath.row].StudentName
             performSegue(withIdentifier: "goToSkillSheet", sender: self)
+            
+//            toSkillSheetVC = indexPath.row
+            
             
         }
         
                 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
                     if let dest = segue.destination as? SignUPVC {
                         dest.dispName = Auth.auth().currentUser?.displayName ?? "set Username"
+                    }
+                    if let dest = segue.destination as? SkillSheetVC{
+                        dest.FromHomeVC = toSkillSheetVC
+                        dest.name = NametoSkillSheetVC
                     }
 
         }
