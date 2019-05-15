@@ -19,12 +19,21 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var editImageView: UIImageView!
     
     var dispName : String = ""
+    var db = Firestore.firestore()
+    var ref : DocumentReference!
+    var useremail : String = ""
     
     
     
     @IBAction func update(_ sender: UIButton) {
-        
         print(" update clicked")
+        db.collection("Users").document(useremail).setData([
+            "username": editDisplayName.text!,
+            "SkillOne": editSkillOne.text!,
+            "SkillTwo": editSkillTwo.text!,
+            "SkillThree": editSkillThree.text!,
+            ])
+        
         let storageRef = Storage.storage().reference().child("Image.png")
         let imgData = editImageView.image?.pngData()
         let metaData = StorageMetadata()
@@ -75,6 +84,10 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
         self.editSkillThree.delegate = self
         
         self.editDisplayName.text = dispName
+        
+        if let userem = Auth.auth().currentUser?.email{
+            useremail = userem
+        }
         
 //        editImageView.image =  UIImage(named: "ClickHere")
         
