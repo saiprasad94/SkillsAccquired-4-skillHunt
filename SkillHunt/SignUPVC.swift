@@ -31,7 +31,7 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
             "username": editDisplayName.text!,
             "SkillOne": editSkillOne.text!,
             "SkillTwo": editSkillTwo.text!,
-            "SkillThree": editSkillThree.text!,
+            "SkillThree": editSkillThree.text!
             ])
         
         let storageRef = Storage.storage().reference().child("Image.png")
@@ -44,6 +44,16 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
                 storageRef.downloadURL(completion: { (url, error) in
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                     changeRequest?.photoURL = url
+                    let  unwrappedURLvar = url?.absoluteString
+                    
+                    let warppedString = unwrappedURLvar
+                    var URLvar = ""
+                    if let unvindURLvar = warppedString {
+                        URLvar = unvindURLvar
+                        print(URLvar)
+                    }
+                        print("url is: ",URLvar)
+                    self.db.collection("Users").document(self.useremail).setData(["imageUrl":URLvar ], merge: true)
                     changeRequest?.displayName = self.editDisplayName.text
                     changeRequest?.commitChanges(completion: { (error) in
                         if error == nil{

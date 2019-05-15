@@ -238,19 +238,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DKN-jr-Oxt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xGa-IK-YcL">
-                                                    <rect key="frame" x="243" y="0.0" width="132" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="132" id="ygX-TQ-Yai"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viF-7G-U3Y">
-                                                    <rect key="frame" x="171.5" y="2" width="32" height="16"/>
+                                                    <rect key="frame" x="171.5" y="14" width="32" height="15.5"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -261,19 +255,22 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xGa-IK-YcL">
+                                                    <rect key="frame" x="242" y="0.0" width="133" height="43.5"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="top" secondItem="hR0-f6-nrd" secondAttribute="top" constant="2" id="8un-Uj-tvc"/>
-                                                <constraint firstItem="DKN-jr-Oxt" firstAttribute="top" secondItem="hR0-f6-nrd" secondAttribute="top" id="Pda-Pp-9O7"/>
-                                                <constraint firstAttribute="trailing" secondItem="xGa-IK-YcL" secondAttribute="trailing" id="PeP-68-DbZ"/>
-                                                <constraint firstAttribute="bottom" secondItem="xGa-IK-YcL" secondAttribute="bottom" id="XPe-fU-9aK"/>
-                                                <constraint firstItem="xGa-IK-YcL" firstAttribute="top" secondItem="hR0-f6-nrd" secondAttribute="top" id="lHX-fm-nx2"/>
-                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="centerX" secondItem="hR0-f6-nrd" secondAttribute="centerX" id="qyc-d7-aBw"/>
-                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DKN-jr-Oxt" secondAttribute="trailing" constant="8" symbolic="YES" id="vFu-Th-yFy"/>
-                                                <constraint firstItem="DKN-jr-Oxt" firstAttribute="leading" secondItem="hR0-f6-nrd" secondAttribute="leading" id="vJ0-tx-Fq1"/>
+                                                <constraint firstAttribute="trailing" secondItem="xGa-IK-YcL" secondAttribute="trailing" id="2Oi-lj-a5f"/>
+                                                <constraint firstAttribute="bottom" secondItem="xGa-IK-YcL" secondAttribute="bottom" id="43T-59-4WM"/>
+                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="centerX" secondItem="hR0-f6-nrd" secondAttribute="centerX" id="JDY-f4-FLv"/>
+                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="centerY" secondItem="hR0-f6-nrd" secondAttribute="centerY" id="UHk-Oy-zKP"/>
+                                                <constraint firstItem="DKN-jr-Oxt" firstAttribute="top" secondItem="hR0-f6-nrd" secondAttribute="top" id="jXd-OF-LGg"/>
+                                                <constraint firstItem="DKN-jr-Oxt" firstAttribute="leading" secondItem="hR0-f6-nrd" secondAttribute="leading" id="teq-H2-krG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="displayImageView" destination="xGa-IK-YcL" id="hJG-xF-t3L"/>
+                                            <outlet property="primarySkillOne" destination="viF-7G-U3Y" id="qDl-7p-5ma"/>
                                             <outlet property="skilledPersonName" destination="DKN-jr-Oxt" id="dVK-MF-R71"/>
                                         </connections>
                                     </tableViewCell>

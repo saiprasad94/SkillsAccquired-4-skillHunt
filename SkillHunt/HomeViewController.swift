@@ -13,8 +13,13 @@ import SDWebImage
 class Skill : UITableViewCell{
     
     @IBOutlet weak var skilledPersonName: UILabel!
+    @IBOutlet weak var primarySkillOne: UILabel!
+    @IBOutlet weak var displayImageView: UIImageView!
+    
     var StudentName : String = ""
     var primarySkill : String = ""
+//    var imageUrl = URL(fileURLWithPath: "")
+    var imageUrl = ""
     
 }
 var db = Firestore.firestore()
@@ -25,6 +30,7 @@ var ref : DocumentReference!
         @IBOutlet weak var name: UILabel!
         
         var nameFromLoginVC : String = ""
+        var userList : [Skill] = []
         
         let imageView = UIImageView()
         
@@ -42,6 +48,7 @@ var ref : DocumentReference!
         override func viewDidLoad() {
             
             super.viewDidLoad()
+            getUsers()
             if let userPhotoURL : URL = (Auth.auth().currentUser?.photoURL){
                 
             }
@@ -84,14 +91,53 @@ var ref : DocumentReference!
 //        
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return userList.count
             
         
     }
+        
+        func getUsers(){
+            
+            
+            db.collection("Users").getDocuments() { (UserSnapshot, error) in
+                if error == nil{
+                    var count = 0
+                    for user in UserSnapshot!.documents{
+                        print("user", user.data())
+                        let sk = Skill()
+                        sk.StudentName = user.get("username") as? String ?? ""
+                        sk.primarySkill = user.get("SkillOne") as? String ?? ""
+                        sk.imageUrl = user.get("imageUrl") as? String ?? ""
+//                        sk.imageUrl = URL(fileURLWithPath: user.get("imageUrl") as? String ?? "" )
+                        print("urlretrived is:",sk.imageUrl)
+                        //sk.imageUrl.appendPathComponent(user.get("imageUrl")) =
+                        print("student name",sk.StudentName)
+                        self.userList.append(sk)
+                        print("getuserlist",self.userList[count].StudentName)
+//                        sk.primarySkill.text = user.get("SkillOne")
+                        
+                        count += 1
+                    }
+                    print("userlist count",self.userList.count)
+                }
+                else{
+                    print("encountered error" , error)
+                }
+                self.tableView.reloadData()
+            }
+            
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "cell") as? Skill)!
-        cell.skilledPersonName.text = "person1"
+        print("userlist",userList[indexPath.row].StudentName)
+        cell.skilledPersonName.text = userList[indexPath.row].StudentName
+        cell.primarySkillOne.text = userList[indexPath.row].primarySkill
+//        cell.imageView?.sd_setImage(with: userList[indexPath.row].imageUrl , completed: nil)
+        cell.displayImageView.image = UIImage(contentsOfFile: userList[indexPath.row].imageUrl)
+        //cell.imageView?.image = UIImage(named: "ClickHere")
+        print("imageSize",cell.displayImageView.image?.size)
+       // tableView.reloadData()
         
 //        let userInfo = Auth.auth().currentUser?.providerData[indexPath.row]
 //        cell.skilledPersonName?.text = userInfo?.providerID
@@ -101,6 +147,8 @@ var ref : DocumentReference!
         return cell
        
     }
+        
+        
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
             
