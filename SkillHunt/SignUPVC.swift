@@ -18,6 +18,7 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var editImageView: UIImageView!
     
+    var dispName : String = ""
     
     
     
@@ -34,6 +35,7 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
                 storageRef.downloadURL(completion: { (url, error) in
                     let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                     changeRequest?.photoURL = url
+                    changeRequest?.displayName = self.editDisplayName.text
                     changeRequest?.commitChanges(completion: { (error) in
                         if error == nil{
                             print("updATE SUCESSFUL")
@@ -72,7 +74,16 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
         self.editSkillTwo.delegate = self
         self.editSkillThree.delegate = self
         
-        editImageView.image = UIImage(named: "ClickHere")
+        self.editDisplayName.text = dispName
+        
+//        editImageView.image =  UIImage(named: "ClickHere")
+        
+        //        let img = editImageView.image = UIImage(contentsOfFile: "ClcikHere")
+                if let img = Auth.auth().currentUser?.photoURL {
+                    editImageView.sd_setImage(with: img, completed: nil)
+                }else{
+                    editImageView.image = UIImage(named: "ClickHere")
+                }
         editImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageClicked)))
         editImageView.isUserInteractionEnabled = true
         
