@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FA33FE62289A71300EE53D5 /* SignUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA33FE52289A71300EE53D5 /* SignUPVC.swift */; };
 		4FB2C32F2286278C0003D783 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2C32E2286278C0003D783 /* AppDelegate.swift */; };
 		4FB2C3312286278C0003D783 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB2C3302286278C0003D783 /* ViewController.swift */; };
 		4FB2C3342286278C0003D783 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB2C3322286278C0003D783 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		12E12AF1CB921775A428A4B5 /* Pods-SkillHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkillHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SkillHunt/Pods-SkillHunt.debug.xcconfig"; sourceTree = "<group>"; };
+		4FA33FE52289A71300EE53D5 /* SignUPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPVC.swift; sourceTree = "<group>"; };
 		4FB2C32B2286278C0003D783 /* SkillHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkillHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB2C32E2286278C0003D783 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FB2C3302286278C0003D783 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				4FB2C33D2286278E0003D783 /* Info.plist */,
 				4FB2C3472286A6950003D783 /* GoogleService-Info.plist */,
 				4FB2C3352286278C0003D783 /* SkillHunt.xcdatamodeld */,
+				4FA33FE52289A71300EE53D5 /* SignUPVC.swift */,
 			);
 			path = SkillHunt;
 			sourceTree = "<group>";
@@ -197,12 +200,16 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SkillHunt/Pods-SkillHunt-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +228,7 @@
 				4FB2C3372286278C0003D783 /* SkillHunt.xcdatamodeld in Sources */,
 				4FB2C346228692910003D783 /* SkillSheetVC.swift in Sources */,
 				4FB2C32F2286278C0003D783 /* AppDelegate.swift in Sources */,
+				4FA33FE62289A71300EE53D5 /* SignUPVC.swift in Sources */,
 				4FB2C344228630620003D783 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

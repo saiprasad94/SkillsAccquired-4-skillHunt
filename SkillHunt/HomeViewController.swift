@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import SDWebImage
 
 class Skill : UITableViewCell{
     
@@ -24,12 +26,22 @@ class Skill : UITableViewCell{
         
         let imageView = UIImageView()
         
+        let uid = Auth.auth().currentUser?.uid
+        
+        let userPhotoURL = Auth.auth().currentUser?.photoURL
+        
+        
+        
+        
         @IBOutlet weak var tableView: UITableView!
+        
         
         
         override func viewDidLoad() {
             
             super.viewDidLoad()
+            let userPhotoURL : URL = (Auth.auth().currentUser?.photoURL)!
+            print("userphotoURl",userPhotoURL)
             
             name.text = nameFromLoginVC
 
@@ -38,12 +50,13 @@ class Skill : UITableViewCell{
             tableView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
             tableView.backgroundColor = UIColor.darkGray
             
-//            imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 300)
-//            imageView.image = UIImage.init(named: "poster")
-//            imageView.contentMode = .scaleAspectFill
-//            imageView.clipsToBounds = true
-//            view.addSubview(imageView)
-            // Do any additional setup after loading the view.
+            imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 400)
+            imageView.sd_setImage(with: userPhotoURL, completed: nil)
+           // imageView.sd_setImage(with: URL(userPhotoURL), placeholderImage: UIImage(named: "ClickHere"))
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            view.addSubview(imageView)
+//             Do any additional setup after loading the view.
         }
         
         func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -71,6 +84,11 @@ class Skill : UITableViewCell{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "cell") as? Skill)!
         cell.skilledPersonName.text = "person1"
+        
+//        let userInfo = Auth.auth().currentUser?.providerData[indexPath.row]
+//        cell.skilledPersonName?.text = userInfo?.providerID
+        // Provider-specific UID
+//        cell?.detailTextLabel?.text = userInfo?.uid
         
         return cell
        

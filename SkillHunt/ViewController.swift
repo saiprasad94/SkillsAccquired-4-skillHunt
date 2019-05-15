@@ -42,6 +42,19 @@ class ViewController: UIViewController {
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error == nil{
                     
+                    let user = Auth.auth().currentUser
+                    if let user = user {
+                        // The user's ID, unique to the Firebase project.
+                        // Do NOT use this value to authenticate with your backend server,
+                        // if you have one. Use getTokenWithCompletion:completion: instead.
+                        let uid = user.uid
+                        let email = user.email
+                        let photoURL = user.photoURL
+                        
+                        print("uid,email,photoURL" ,uid,";",email,";",photoURL)
+                        // ...
+                    }
+                    
                     self.performSegue(withIdentifier: "toHomeVC", sender: self)
                     
                 }
@@ -58,15 +71,20 @@ class ViewController: UIViewController {
             print("in signup mode")
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!){ (user, error) in
                 if error == nil {
-                    self.performSegue(withIdentifier: "toHomeVC", sender: self)
+                    
+                    
+                    self.performSegue(withIdentifier: "goToSignUpDetails", sender: self)
                     
                 }
                 else{
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     
+                   
                     alertController.addAction(defaultAction)
                     self.present(alertController, animated: true, completion: nil)
+                    
+                    
                 }
         }
         
