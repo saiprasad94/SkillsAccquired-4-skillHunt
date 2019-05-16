@@ -11,6 +11,8 @@ import UIKit
 class ProfileViewVC: UIViewController {
     
     
+    var imageURL : URL!
+    
     @IBOutlet weak var imageViewDP: UIImageView!
     @IBOutlet weak var DisplayName: UILabel!
     @IBOutlet weak var SkillOne: UILabel!
@@ -22,6 +24,13 @@ class ProfileViewVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("image url in profileVC",imageURL)
+        
+        if let imgURL : URL = imageURL{
+            
+            print("imageSize",imgURL)
+            imageViewDP.sd_setImage(with: imgURL, completed: nil)
+        }
 
         // Do any additional setup after loading the view.
     }

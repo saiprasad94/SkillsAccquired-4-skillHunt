@@ -209,6 +209,7 @@
                         <outlet property="editSkillThree" destination="vGG-U4-yhp" id="O8r-DA-nvm"/>
                         <outlet property="editSkillTwo" destination="e0g-2D-vx8" id="v4U-mv-B77"/>
                         <outletCollection property="TextFields" destination="aFS-an-CYG" collectionClass="NSMutableArray" id="Ris-8C-LZQ"/>
+                        <segue destination="iOO-CD-ZYc" kind="show" identifier="goToHomeVCOnUpdate" id="edh-ZV-Rn9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGI-Cp-Vx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,7 +245,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viF-7G-U3Y">
-                                                    <rect key="frame" x="171" y="14" width="33" height="16"/>
+                                                    <rect key="frame" x="52" y="14" width="32" height="16"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Label">
                                                             <attributes>
@@ -266,11 +267,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="xGa-IK-YcL" secondAttribute="trailing" id="2Oi-lj-a5f"/>
                                                 <constraint firstAttribute="bottom" secondItem="xGa-IK-YcL" secondAttribute="bottom" id="43T-59-4WM"/>
                                                 <constraint firstItem="xGa-IK-YcL" firstAttribute="top" secondItem="DKN-jr-Oxt" secondAttribute="top" id="8eX-Dt-YtG"/>
-                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DKN-jr-Oxt" secondAttribute="trailing" constant="8" symbolic="YES" id="DZe-Fg-W8l"/>
-                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="centerX" secondItem="hR0-f6-nrd" secondAttribute="centerX" id="JDY-f4-FLv"/>
-                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="centerY" secondItem="hR0-f6-nrd" secondAttribute="centerY" id="UHk-Oy-zKP"/>
-                                                <constraint firstItem="xGa-IK-YcL" firstAttribute="leading" secondItem="viF-7G-U3Y" secondAttribute="trailing" constant="38" id="dDX-01-7Uw"/>
+                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="centerY" secondItem="hR0-f6-nrd" secondAttribute="centerY" id="CNQ-Mi-M1I"/>
+                                                <constraint firstItem="viF-7G-U3Y" firstAttribute="leading" secondItem="DKN-jr-Oxt" secondAttribute="trailing" constant="10" id="NMk-i6-331"/>
                                                 <constraint firstItem="DKN-jr-Oxt" firstAttribute="top" secondItem="hR0-f6-nrd" secondAttribute="top" id="jXd-OF-LGg"/>
+                                                <constraint firstItem="xGa-IK-YcL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="viF-7G-U3Y" secondAttribute="trailing" constant="8" symbolic="YES" id="lhG-GJ-Yj4"/>
                                                 <constraint firstItem="DKN-jr-Oxt" firstAttribute="leading" secondItem="hR0-f6-nrd" secondAttribute="leading" id="teq-H2-krG"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -410,6 +410,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tF-a9-QC6">
                                 <rect key="frame" x="0.0" y="56.5" width="375" height="30"/>
                                 <state key="normal" title="VIew Profile"/>
+                                <connections>
+                                    <action selector="OnClickViewProfile:" destination="SsE-ud-81C" eventType="touchUpInside" id="Jev-yo-ycj"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="bja-Ot-leY">
                                 <rect key="frame" x="0.0" y="86.5" width="375" height="56"/>
@@ -595,6 +598,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="edh-ZV-Rn9"/>
         <segue reference="4GK-Oh-pUu"/>
     </inferredMetricsTieBreakers>
 </document>

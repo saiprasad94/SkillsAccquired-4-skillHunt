@@ -28,8 +28,10 @@ var ref : DocumentReference!
 
     class HomeViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
         
-        @IBOutlet weak var name: UILabel!
+        var animated: Bool = true
         
+        @IBOutlet weak var name: UILabel!
+        var imageUrltoSkillSheetVC : URL!
         var nameFromLoginVC : String = ""
         var userList : [Skill] = []
         var toSkillSheetVC : String = ""
@@ -55,6 +57,12 @@ var ref : DocumentReference!
             if let userPhotoURL : URL = (Auth.auth().currentUser?.photoURL){
                 
             }
+            
+            func viewWillAppear(animated: Bool) {
+                super.viewWillAppear(animated)
+                viewDidLoad()// No need for semicolon
+            }
+            
 //            let userPhotoURL : URL = URL(fileURLWithPath: "https://firebasestorage.googleapis.com/v0/b/skillhunt-bb788.appspot.com/o/Image.png?alt=media&token=c1c6a9a1-e515-4618-8063-7b3765f2a36d")
             //print("userphotoURl",userPhotoURL)
             
@@ -147,6 +155,7 @@ var ref : DocumentReference!
         
         if let imgURL : URL = URL(string: (userList[indexPath.row].imageUrl )){
             cell.displayImageView.sd_setImage(with: imgURL, completed: nil)
+            
             print("imageSize",imgURL)
         }
         
@@ -165,7 +174,10 @@ var ref : DocumentReference!
         
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
+            if let imgURL : URL = URL(string: (userList[indexPath.row].imageUrl )){
+                imageUrltoSkillSheetVC = imgURL
+                
+            }
             NametoSkillSheetVC = userList[indexPath.row].StudentName
             performSegue(withIdentifier: "goToSkillSheet", sender: self)
             
@@ -181,17 +193,18 @@ var ref : DocumentReference!
                     if let dest = segue.destination as? SkillSheetVC{
                         dest.FromHomeVC = toSkillSheetVC
                         dest.name = NametoSkillSheetVC
+                        dest.imagurlfromHomeVC = imageUrltoSkillSheetVC
                     }
 
         }
         
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.section == 0 {
-                return UITableView.automaticDimension
-            } else {
-                return 40
-            }
-        }
+//        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//            if indexPath.section == 0 {
+//                return UITableView.automaticDimension
+//            } else {
+//                return 40
+//            }
+//        }
        
         
         
@@ -200,7 +213,7 @@ var ref : DocumentReference!
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return UITableView.automaticDimension
 //    }
-//
+
     
 
     /*

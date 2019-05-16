@@ -60,6 +60,7 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
                     changeRequest?.commitChanges(completion: { (error) in
                         if error == nil{
                             print("updATE SUCESSFUL")
+                            self.performSegue(withIdentifier: "goToHomeVCOnUpdate", sender: self)
                         }
                         else{
                             print("update unsuccessfull")
@@ -113,6 +114,12 @@ class SignUPVC: UIViewController, UITextFieldDelegate {
         editImageView.isUserInteractionEnabled = true
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+         let HVC = HomeViewController()
+            var test = HomeViewController.viewDidLoad(HVC)
+        
     }
 
 }

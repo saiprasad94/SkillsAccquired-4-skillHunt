@@ -12,6 +12,8 @@ import Firebase
 public class SkillSet : UITableViewCell{
     
     @IBOutlet weak var SkillLabel: UILabel!
+    
+    
     var skillOne : String = ""
     var skillTwo : String = ""
     var skillThree : String = ""
@@ -21,7 +23,7 @@ public class SkillSet : UITableViewCell{
 
 class SkillSheetVC: UIViewController {
     
-    
+    var imagurlfromHomeVC : URL!
 //    var skillList : [SkillSet] = []
     var skillList : [String] = []
     
@@ -30,6 +32,8 @@ class SkillSheetVC: UIViewController {
     var FromHomeVC :String = ""
     let imageView = UIImageView()
     var db = Firestore.firestore()
+    
+    
 
     @IBOutlet weak var SkillTableView: UITableView!
     
@@ -45,6 +49,12 @@ class SkillSheetVC: UIViewController {
         getSkills()
 
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func OnClickViewProfile(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: "goToProfileVC", sender: self)
     }
     
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -78,6 +88,14 @@ extension SkillSheetVC: UITableViewDelegate,UITableViewDataSource{
         let cell = (tableView.dequeueReusableCell(withIdentifier: "Skillcell") as? SkillSet)!
        cell.SkillLabel.text = skillList[indexPath.row]
         return cell
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? ProfileViewVC{
+            dest.imageURL = imagurlfromHomeVC
+        }
     }
     
     func getSkills(){
