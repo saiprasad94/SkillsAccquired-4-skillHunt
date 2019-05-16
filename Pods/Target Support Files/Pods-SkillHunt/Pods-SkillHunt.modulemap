@@ -1,0 +1,6 @@
+framework module Pods_SkillHunt {
+  umbrella header "Pods-SkillHunt-umbrella.h"
+
+  export *
+  module * { export * }
+}
